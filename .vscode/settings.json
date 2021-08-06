@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": false,
+    "cmake.configureArgs": [
+        "-DENABLE_CXX11=ON",
+        "-DENABLE_CUDA=ON"
+    ]
+}
