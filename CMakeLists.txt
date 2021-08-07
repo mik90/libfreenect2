@@ -349,6 +349,22 @@ IF(ENABLE_CUDA)
 
     STRING(REPLACE "\\" "/" NVCUDASAMPLES_ROOT "$ENV{NVCUDASAMPLES_ROOT}")
     STRING(REPLACE "\\" "/" NVCUDASAMPLES8_0_ROOT "$ENV{NVCUDASAMPLES8_0_ROOT}")
+    IF(NOT NVCUDASAMPLES_ROOT AND NOT NVCUDASAMPLES8_0_ROOT)
+      # Pull down the CUDA samples since they weren't provided and they are required
+      include(ExternalProject)
+      ExternalProject_Add(CUDA_SAMPLES_GITHUB
+        GIT_REPOSITORY    git@github.com:NVIDIA/cuda-samples.git
+        GIT_TAG           origin/master
+        BUILD_COMMAND     ""
+        CONFIGURE_COMMAND ""
+        INSTALL_COMMAND   ""
+        TEST_COMMAND      ""
+      )
+      ExternalProject_Get_property(CUDA_SAMPLES_GITHUB SOURCE_DIR)
+      CUDA_INCLUDE_DIRECTORIES(
+        "${SOURCE_DIR}/Common"
+      )
+    ENDIF()
     CUDA_INCLUDE_DIRECTORIES(
       "${MY_DIR}/include/"
       "${CUDA_TOOLKIT_ROOT_DIR}/samples/common/inc"

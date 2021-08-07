@@ -6,6 +6,8 @@
     ],
     "cmake.configureArgs": [
         "-DENABLE_CXX11=ON",
-        "-DENABLE_CUDA=OFF"
-    ]
+        "-DENABLE_CUDA=ON"
+    ],
+    "cmake.configureEnvironment": {
+    }
 }
