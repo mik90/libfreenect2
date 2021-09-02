@@ -67,6 +67,7 @@ IF(ENABLE_OPENGL)
     )
     LIST(APPEND Protonect_LIBRARIES
       ${GLFW3_LIBRARIES}
+      GL # TODO this should be part of OPENGL_gl_LIBRARY somehow
       ${OPENGL_gl_LIBRARY}
     )
     ADD_DEFINITIONS(-DEXAMPLES_WITH_OPENGL_SUPPORT=1)
