@@ -154,7 +154,6 @@ int main(int argc, char *argv[])
   bool viewer_enabled = true;
   bool enable_rgb = true;
   bool enable_depth = true;
-  int deviceId = -1;
   size_t framemax = -1;
 
   for(int argI = 1; argI < argc; ++argI)
@@ -173,7 +172,7 @@ int main(int argc, char *argv[])
         std::cerr << "-gpu must be specified before pipeline argument" << std::endl;
         return -1;
       }
-      deviceId = atoi(argv[argI] + 5);
+      //deviceId = atoi(argv[argI] + 5);
     }
     else if(arg == "cpu")
     {
@@ -355,6 +354,7 @@ int main(int argc, char *argv[])
     }
     libfreenect2::Frame *rgb = frames[libfreenect2::Frame::Color];
     libfreenect2::Frame *ir = frames[libfreenect2::Frame::Ir];
+    static_cast<void>(ir); // Not reading in IR frame
     libfreenect2::Frame *depth = frames[libfreenect2::Frame::Depth];
 /// [loop start]
 
